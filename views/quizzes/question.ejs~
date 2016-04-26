@@ -7,8 +7,10 @@
   </head>
   <body>
     <h2>Quiz: el juego de las preguntas</h2>
-    <p> El portal donde podrá crear sus propios juegos! </p>
-    <nav> <a href="/author"> Créditos </a> </nav>
-    <footer> <a href="https://github.com/MiryMou95/quiz2016"> Proyecto en GitHub </a> </footer>
+    <form method="get" action="/check">
+	Pregunta: <%= question %> <p>
+	<input type="text" name="answer" value="" placeholder="Responda aquí"/>
+	<input type="submit" value="Comprobar" />
+    </form>
   </body>
 </html>
