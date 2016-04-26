@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Créditos</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <p><h4> Autor de la página: </h4> Miriam Mouriño Fernández.</p>
+    <p><img src="Miry.jpg" width= "250px" height="auto" alt="Miriam Mouriño Fernández" /></p>
+    <p><a href="/"> Volver a la página inicial </a> </p>
+  </body>
+</html>
