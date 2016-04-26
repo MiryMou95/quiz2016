@@ -5,6 +5,8 @@
     <title> Preguntas </title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' type='text/css' media='only screen and (min-width: 800px) and (min-device-width: 600px)' href='/stylesheets/wide.css' />
+    <link rel='stylesheet' type='text/css' media='only screen and (max-width: 480px)' href='/stylesheets/smartphone.css' />
   </head>
   <body>
     <header>
@@ -12,9 +14,9 @@
     </header>
     <p> </p>
     <nav> 
-	<br><a href="/"> Inicio </a></br>
-	<br><a href="/question"> Preguntas </a></br> 
-	<br><a href="/author"> Créditos </a> </br>
+	<a href="/"> Inicio </a>
+	<a href="/question"> Preguntas </a>
+	<a href="/author"> Créditos </a>
     </nav>
     <section> 
 	<div> <%- body %> </div>
