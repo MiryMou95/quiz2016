@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/author', function(req, res, next){
-  res.render('author');
+  res.render('author',{author: 'Miriam Mouriño Fernández'});
 });
 
 module.exports = router;
