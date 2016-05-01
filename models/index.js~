@@ -21,3 +21,5 @@ sequelize.sync().then(function(){ // sync() crea la tabla quiz
 	console.log("Error sincronizando las tablas de la BBDD: ", error);
 	process.exit(1);});
 
+exports.Quiz = Quiz; // Exportar definición de la tabla Quiz
+
