@@ -34,4 +34,57 @@ footer { text-align: center; }
 
 nav a { margin: 0px 10px 0px 0px; }
 
+#flashinfo {
+  border: 1px solid blue;
+  padding: 10px;
+  color: white;
+  background-color: #898; 
+  text-align: center;
+}
+
+#flashsuccess {
+  border: 1px solid lime;
+  padding: 10px;
+  color: white;
+  background-color: #898;
+  text-align: center;
+}
+
+#flasherror {
+  border: 1px solid red;
+  padding: 10px;
+  color: white;
+  background-color: #898;
+  text-align: center;
+}
+
+#flashinfo h3 {
+  font-weight: bold;
+  color: blue;
+}
+
+#flashsuccess h3 {
+  font-weight: bold;
+  color: lime;
+}
+
+#flasherror h3 {
+  font-weight: bold;
+  color: red;
+}
+
+#flashinfo ul li {
+  list-style: none;
+}
+
+#flashsuccess ul li {
+  list-style: none;
+}
+
+#flasherror ul li {
+  list-style: none;
+}
+
+
+
 
