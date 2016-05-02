@@ -7,6 +7,9 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+// Autoload de rutas que usen :quizId
+router.param('quizId', quizController.load); // autoload :quizId
+
 router.get('/author', function(req, res, next){
   res.render('author',{author: 'Miriam Mouriño Fernández'});
 });
