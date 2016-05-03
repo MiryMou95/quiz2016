@@ -4,6 +4,7 @@
 			<td>
 				<a href="/quizzes/<%= quizzes[i].id %>"><%= quizzes[i].question %> </a>
 			</td>
+<<<<<<< HEAD
 			<td>
 				<a href="/quizzes/<%= quizzes[i].id %>/edit"><button> Editar </button></a>
 			</td>
@@ -11,3 +12,8 @@
 	<% } %>
 </table>
 <a href="/quizzes/new"><button type="button"> Crear pregunta </button></a>
+=======
+		</tr>
+	<% } %>
+</table>
+>>>>>>> busquedas

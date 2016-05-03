@@ -14,9 +14,17 @@ exports.load = function(req,res,next,quizId){
 
 // GET /quizzes
 exports.index = function(req,res,next){
+	var search = req.query.search || "";
+	if (search !== ""){
+		busqueda = "%"+search.replace(/ /g, "%")+"%";
+		models.Quiz.findAll({ where: ["question like ?", busqueda ]}).then(function(quizzes){
+			quizzes.sort(function(a,b){
+				return a.question.localeCompare(b.question);});
+			res.render('quizzes/index', { quizzes: quizzes, search: search });}).catch(function(error){ next(error); }); }
+	else{
 	models.Quiz.findAll().then(function(quizzes){
-		res.render('quizzes/index', {quizzes: quizzes});
-	}).catch(function(error){ next(error); });
+		res.render('quizzes/index', {quizzes: quizzes, search:search });
+	}).catch(function(error){ next(error); }); }
 };
 
 // GET /quizzes/:id

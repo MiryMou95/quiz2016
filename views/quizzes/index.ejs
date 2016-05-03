@@ -1,3 +1,8 @@
+<form method="get" action="/quizzes">
+	Buscar pregunta: 
+	<p> <input type="text" name="search" value="<%= search %>" placeholder="Introduzca pregunta a buscar" /></p>
+	<p> <input type="submit" value="Enviar" /> </p>
+</form>
 <table>
 	<% for(var i in quizzes){ %>
 		<tr>
