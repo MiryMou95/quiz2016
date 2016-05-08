@@ -1,30 +1,9 @@
 var models = require ('../models');
 var Sequelize = require ('sequelize');
 
-<<<<<<< HEAD
 // Autoload el quiz asociado a :quizId
 exports.load = function(req,res,next,quizId){
 	models.Quiz.findById(quizId).then(function(quiz){
-=======
-// GET /quizzes
-exports.index = function(req,res,next){
-	var search = req.query.search || "";
-	if (search !== ""){
-		busqueda = "%"+search.replace(/ /g, "%")+"%";
-		models.Quiz.findAll({ where: ["question like ?", busqueda ]}).then(function(quizzes){
-			quizzes.sort(function(a,b){
-				return a.question.localCompare(b.question);});
-			res.render('quizzes/index', { quizzes: quizzes, search: search });}).catch(function(error){ next(error); }); }
-	else{
-	models.Quiz.findAll().then(function(quizzes){
-		res.render('quizzes/index', {quizzes: quizzes, search:search });
-	}).catch(function(error){ next(error); }); }
-};
-
-// GET /quizzes/:id
-exports.show = function(req,res,next){
-	models.Quiz.findById(req.params.quizId).then(function(quiz){
->>>>>>> busquedas
 		if (quiz){
 			req.quiz = quiz;
 			next();}
@@ -35,9 +14,17 @@ exports.show = function(req,res,next){
 
 // GET /quizzes
 exports.index = function(req,res,next){
+	var search = req.query.search || "";
+	if (search !== ""){
+		busqueda = "%"+search.replace(/ /g, "%")+"%";
+		models.Quiz.findAll({ where: ["question like ?", busqueda ]}).then(function(quizzes){
+			quizzes.sort(function(a,b){
+				return a.question.localeCompare(b.question);});
+			res.render('quizzes/index', { quizzes: quizzes, search: search });}).catch(function(error){ next(error); }); }
+	else{
 	models.Quiz.findAll().then(function(quizzes){
-		res.render('quizzes/index', {quizzes: quizzes});
-	}).catch(function(error){ next(error); });
+		res.render('quizzes/index', {quizzes: quizzes, search:search });
+	}).catch(function(error){ next(error); }); }
 };
 
 // GET /quizzes/:id
