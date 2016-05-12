@@ -3,6 +3,7 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var userController = require('../controllers/user_controller');
+var sessionController = require('../controllers/session_controller');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -18,9 +19,9 @@ router.get('/author', function(req, res, next){
 });
 
 
-// Definición de rutas de cuenta
-router.get('/quizzes', quizController.index);
-router.get('/quizzes/:quizId(\\d+)', quizController.show);
+// Definición de rutas de sesión
+router.get('/quizzes.:format?', quizController.index);
+router.get('/quizzes/:quizId(\\d+).:format?', quizController.show);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
 router.get('/quizzes/new', quizController.new);
 router.post('/quizzes', quizController.create);
@@ -38,5 +39,9 @@ router.post('/users', userController.create);
 router.get('/users/:userId(\\d+)/edit', userController.edit);
 router.put('/users/:userId(\\d+)', userController.update);
 router.delete('/users/:userId(\\d+)', userController.destroy);
+
+router.get('/session', sessionController.new); // Formulario login
+router.post('/session', sessionController.create); // Crear sesión
+router.delete('/session', sessionController.destroy); // Destruir sesión
 
 module.exports = router;

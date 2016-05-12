@@ -8,7 +8,11 @@ module.exports = function(sequelize, DataTypes){
 		this.salt = Math.round((new Date().valueOf() * Math.random())) + '';
 		this.setDataValue('password', encryptPassword(password, this.salt)); }}, salt: { type: DataTypes.STRING }, isAdmin: { type: DataTypes.BOOLEAN, defaultValue: false 
 		}
-	});
+	}, { instanceMethods: {
+		verifyPassword: function(password){
+			return encryptPassword(password, this.salt) === this.password; } }
+
+});
 };
 
 /*

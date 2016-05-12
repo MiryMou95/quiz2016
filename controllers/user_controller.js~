@@ -22,13 +22,13 @@ exports.index = function(req,res,next){
 
 // GET /users/:id
 exports.show = function(req,res,next){
-	res.render('/users/show', { user: req.user });
+	res.render('users/show', { user: req.user });
 };
 
 // GET /users/new
 exports.new = function(req,res,next){
 	var user = models.User.build({ username: "", password: "" });
-	res.render('/users/new', { user: user });
+	res.render('users/new', { user: user });
 };
 
 // POST /users
@@ -44,7 +44,7 @@ models.User.find({ where: { username: req.body.user.username }}).then(function(e
 		// Guardar en la BBDD
 		return user.save({ fields: ["username","password","salt"]}).then(function(user){ // Renderizar página de usuarios
 			req.flash('success', 'Usuario creado con éxito.');
-			res.redirect('/users');
+			res.redirect('/session');
 		}).catch(Sequelize.ValidationError, function(error){
 			req.flash('error', 'Errores en el formulario: ');
 			for (var i in error.errors){
