@@ -59,3 +59,10 @@ exports.deleteSession = function(req,res,next){
 		req.session.user.time = Date.now() + expirationTime; } }
 	next();
 };
+
+exports.loginRequired = function(req,res,next){
+	if (req.session.user){
+		next();}
+	else{
+		res.redirect('/session?redir=' + (req.param('redir') || req.url)); }
+};

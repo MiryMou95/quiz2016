@@ -19,26 +19,27 @@ router.get('/author', function(req, res, next){
 });
 
 
-// Definición de rutas de sesión
+// Definición de rutas de /quizzes
 router.get('/quizzes.:format?', quizController.index);
 router.get('/quizzes/:quizId(\\d+).:format?', quizController.show);
 router.get('/quizzes/:quizId(\\d+)/check', quizController.check);
-router.get('/quizzes/new', quizController.new);
-router.post('/quizzes', quizController.create);
-router.get('/quizzes/:quizId(\\d+)/edit', quizController.edit);
-router.put('/quizzes/:quizId(\\d+)', quizController.update);
-router.delete('/quizzes/:quizId(\\d+)', quizController.destroy);
+router.get('/quizzes/new', sessionController.loginRequired, quizController.new);
+router.post('/quizzes', sessionController.loginRequired, quizController.create);
+router.get('/quizzes/:quizId(\\d+)/edit', sessionController.loginRequired, quizController.edit);
+router.put('/quizzes/:quizId(\\d+)', sessionController.loginRequired, quizController.update);
+router.delete('/quizzes/:quizId(\\d+)', sessionController.loginRequired, quizController.destroy);
 
-router.get('/quizzes/:quizId(\\d+)/comments/new', commentController.new);
-router.post('/quizzes/:quizId(\\d+)/comments', commentController.create);
+router.get('/quizzes/:quizId(\\d+)/comments/new', sessionController.loginRequired, commentController.new);
+router.post('/quizzes/:quizId(\\d+)/comments', sessionController.loginRequired, commentController.create);
 
-router.get('/users', userController.index);
-router.get('/users/:userId(\\d+)', userController.show);
-router.get('/users/new', userController.new);
-router.post('/users', userController.create);
-router.get('/users/:userId(\\d+)/edit', userController.edit);
-router.put('/users/:userId(\\d+)', userController.update);
-router.delete('/users/:userId(\\d+)', userController.destroy);
+// Definición de rutas de cuenta
+router.get('/users', userController.index); // Listado usuarios
+router.get('/users/:userId(\\d+)', userController.show); // Ver un usuario
+router.get('/users/new', userController.new); // Formulario sign in
+router.post('/users', userController.create); // Registrar usuario
+router.get('/users/:userId(\\d+)/edit', sessionController.loginRequired, userController.edit);
+router.put('/users/:userId(\\d+)', sessionController.loginRequired, userController.update);
+router.delete('/users/:userId(\\d+)', sessionController.loginRequired, userController.destroy);
 
 router.get('/session', sessionController.new); // Formulario login
 router.post('/session', sessionController.create); // Crear sesión
