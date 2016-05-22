@@ -90,3 +90,4 @@ exports.destroy = function(req,res,next){
 		res.redirect('/');
 	}).catch(function(error){ next(error); });
 };
+

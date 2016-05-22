@@ -12,6 +12,17 @@ exports.load = function(req,res,next,quizId){
 	}).catch(function(error){ next(error); });
 };
 
+exports.ownershipRequired = function(req,res,next){
+	var isAdmin = req.session.user.isAdmin;
+	var quizAuthorId = req.quiz.AuthorId;
+	var loggedUserId = req.session.user.id;
+	if (isAdmin || quizAuthorId === loggedUserId){
+		next(); }
+	else{
+		console.log('Operación prohibida: El usuario logeado no es el autor del quiz, ni un administrador.');
+		res.send(403); }
+};
+
 // GET /quizzes.:format?
 exports.index = function(req,res,next){
 	if ((req.params.format==='html') || (!req.params.format)){
@@ -60,7 +71,7 @@ exports.new = function(req,res,next){
 // POST /quizzes/create
 exports.create = function(req,res,next){
 	var authorId = req.session.user && req.session.user.id || 0;
-	var quiz = models.Quiz.build({ question: req.body.quiz.question, answer: req.body.quiz.answer, AuthodId: authorId });
+	var quiz = models.Quiz.build({ question: req.body.quiz.question, answer: req.body.quiz.answer, AuthorId: authorId });
 
 // guarda en DB los campos pregunta y respuesta de quiz
 quiz.save({ fields: ["question", "answer", "AuthorId"]}).then(function(quiz){
@@ -108,4 +119,5 @@ exports.destroy = function(req,res,next){
 	req.flash('error', 'Error al borrar el Quiz: ' +error.message);
 	next(error); });
 };
+
 	
