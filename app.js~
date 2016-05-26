@@ -28,7 +28,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({ secret: "Quiz 2016", resave: false, saveUninitialized: true }));
 app.use(flash());
-app.use(sessionController.deleteSession);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Helper dinámico:
@@ -38,6 +37,7 @@ app.use(function(req,res,next){
 	next();
 });
 
+app.use(sessionController.deleteSession);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
